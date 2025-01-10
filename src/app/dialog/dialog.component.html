@@ -1,0 +1,128 @@
+<!-- 
+<h1 class="header">JSONPlaceholder Posts</h1>
+
+<div class="add-data-container">
+      <h2 class="add-data-heading">{{ editingPost ? 'Edit Data' : 'Add Data' }}</h2>
+
+      <p-panel header="Add/Edit Data" *ngIf="isFormVisible">
+            <form (ngSubmit)="onSubmit()" class="add-data-form">
+                  <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input pInputText type="text" id="title" [(ngModel)]="newPost.title" name="title" required />
+                  </div>
+
+                  <div class="form-group">
+                        <label for="body">Body:</label>
+                        <textarea pInputTextarea id="body" [(ngModel)]="newPost.body" name="body" required></textarea>
+                  </div>
+
+                  <div class="form-group">
+                        <button pButton type="submit" label="{{ editingPost ? 'Update' : 'Submit' }}"></button>
+                  </div>
+            </form>
+      </p-panel>
+
+
+      <div class="button-container" *ngIf="!isFormVisible">
+            <button pButton label="Add New Post" (click)="toggleForm()" class="p-mr-2"></button>
+            <button pButton label="Show Data" (click)="toggleForm()"></button>
+      </div>
+</div>
+
+<div class="posts-container">
+      <i class="pi pi-times" style="font-size: 1.5rem"></i>
+      <p-table [value]="posts" [paginator]="true" [rows]="10" [responsiveLayout]="'scroll'">
+            <ng-template pTemplate="header">
+                  <tr>
+                        <th>ID</th>
+                        <th>User ID</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Action </th>
+                  </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-post>
+                  <tr>
+                        <td>{{ post.id }}</td>
+                        <td>{{ post.userId }}</td>
+                        <td>{{ post.title }}</td>
+                        <td>{{ post.body }}</td>
+                        <td>
+
+
+                              
+                              <button pButton label="Edit" class="p-button-text p-mr-2"
+                                    (click)="editPost(post)"></button>
+                              <button pButton label="Delete" class="p-button-danger p-button-text"
+                                    (click)="deletePost(post.id)"></button>
+                        </td>
+                  </tr>
+            </ng-template>
+      </p-table>
+</div> -->
+
+
+<h1 class="header">JSONPlaceholder Posts</h1>
+
+<div class="add-data-container">
+      <h2 class="add-data-heading">{{ editingPost ? 'Edit Data' : 'Add Data' }}</h2>
+
+      <p-panel header="Add/Edit Data" *ngIf="isFormVisible">
+            <form (ngSubmit)="onSubmit()" class="add-data-form">
+                  <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input pInputText type="text" id="title" [(ngModel)]="newPost.title" name="title" required />
+                  </div>
+
+                  <div class="form-group">
+                        <label for="body">Body:</label>
+                        <textarea pInputTextarea id="body" [(ngModel)]="newPost.body" name="body" required></textarea>
+                  </div>
+
+                  <div class="form-group">
+                        <button pButton type="submit" label="{{ editingPost ? 'Update' : 'Submit' }}"></button>
+                  </div>
+            </form>
+      </p-panel>
+
+      <div class="button-container" *ngIf="!isFormVisible">
+            <button pButton label="Add New Post" (click)="toggleForm()" class="p-mr-2"></button>
+            <button pButton label="Show Data" (click)="toggleForm()"></button>
+      </div>
+</div>
+
+<div class="posts-container">
+      <i class="pi pi-times" style="font-size: 1.5rem"></i>
+      <p-table [value]="posts" [paginator]="true" [rows]="10" [responsiveLayout]="'scroll'">
+            <ng-template pTemplate="header">
+                  <tr>
+                        <th>ID</th>
+                        <th>User ID</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Action </th>
+                  </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-post>
+                  <tr>
+                        <td>{{ post.id }}</td>
+                        <td>{{ post.userId }}</td>
+                        <td>{{ post.title }}</td>
+                        <td>{{ post.body }}</td>
+                        <td>
+                              <button pButton label="Edit" class="p-button-text p-mr-2" (click)="editPost(post)">
+                              </button>
+                              <button pButton label="Delete" class="p-button-danger p-button-text"
+                                    (click)="confirmDelete(post)">
+                              </button>
+                        </td>
+                  </tr>
+            </ng-template>
+      </p-table>
+      <p-dialog class="custom-dialog" header="Confirm" [(visible)]="displayDialog" [responsive]="true"
+            [transitionOptions]="'300ms ease-out'">
+            <p>Are you sure you want to delete this post?</p>
+            <p>{{ postToDelete?.id | json }}</p>
+            <p-button icon="pi pi-check" label="Yes" (click)="deletePost(postToDelete?.id)"></p-button>
+      </p-dialog>
+</div>

@@ -1,0 +1,31 @@
+
+<h1 class="header">JSONPlaceholder Posts</h1>
+
+<div class="add-data-container">
+    <h2 class="add-data-heading">{{ editingPost ? 'Edit Data' : 'Add Data' }}</h2>
+
+    <p-panel header="Add/Edit Data" *ngIf="isFormVisible">
+        <form (ngSubmit)="onSubmit()" class="add-data-form">
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input pInputText type="text" id="title" [(ngModel)]="newPost.title" name="title" required />
+            </div>
+
+            <div class="form-group">
+                <label for="body">Body:</label>
+                <textarea pInputTextarea id="body" [(ngModel)]="newPost.body" name="body" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <button pButton type="submit" label="{{ editingPost ? 'Update' : 'Submit' }}"></button>
+            </div>
+        </form>
+    </p-panel>
+
+
+    <div class="button-container" *ngIf="!isFormVisible">
+        <button pButton label="Add New Post" (click)="toggleForm()" class="p-mr-2"></button>
+        <button pButton label="Show Data" routerLink="/edit-delete"></button>
+    </div>
+</div>
+
